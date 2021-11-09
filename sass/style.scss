@@ -1,0 +1,81 @@
+$primary-color : #b67250;
+body{
+color: $primary-color}
+.button{display: inline-block;
+  color: $primary-color;
+  text-align: center;
+  border: solid 2px $primary-color;
+}
+
+.button-alert{
+  a{
+    @extend .button;
+    border-radius: 4px;
+  }
+}
+@mixin inline-block($margin:10px){
+display: inline-block;
+margin-left: $margin
+
+}
+//@import "mixins"; appel a un fichier externe mixins
+$primary-color:#ff752f;
+#box{
+  font: {
+    weight: bold;
+    family:Algerian;
+  }
+  @include inline-block()
+}
+@for $i from 1 through 3 {
+  .m-#{$i}{
+    margin: 0 ($i*0.25rem);
+  }
+}
+.btn{
+  background-color: $primary-color;
+  border-radius: 5px;
+  @if lightness($primary-color)>50% {
+    color:#ffb60b;
+  }else{
+    color: #ff1f17;
+  }
+}
+// workshop 2 scss
+$primary: red;
+.text{
+  color:  background(white);
+font-size: 20px;}
+
+textarea{
+@extend .text;
+}
+h1{@extend .text;}
+
+@mixin border($color,$width){
+    border: solid $width $color;  
+  }
+  .btn{
+    @include border(yellow,2px);
+  }
+  @function background($background-color){
+    @if $background-color != 'white'{
+      @return white;
+    }@else{@return black;}
+  }
+
+$languages: 'html5','css3','java','react';
+@function firstOfList($list){
+  @return nth($list, 1);
+}
+
+.lang{
+  content: firstOfList($languages);
+}
+@function lastOfList($list){
+  @return nth($list, length($list));
+}
+
+.lang{
+  content: lastOfList($languages);
+}
